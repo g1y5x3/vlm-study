@@ -7,6 +7,16 @@ model_id = "microsoft/Phi-3-vision-128k-instruct"
 
 model = AutoModelForCausalLM.from_pretrained(model_id, device_map="cuda", trust_remote_code=True, torch_dtype="auto")
 
+# model inspection
+print(model)
+# print(model.config)
+# for name, module in model.named_modules():
+  # print(name)
+
+# state_dict = model.state_dict()
+# for param_tensor in state_dict:
+#     print(param_tensor, "\t", state_dict[param_tensor].size())
+
 processor = AutoProcessor.from_pretrained(model_id, trust_remote_code=True) 
 
 messages = [ 
