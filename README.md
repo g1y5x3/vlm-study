@@ -1,4 +1,5 @@
-##
+# study notes about the phi3-vision model
+## model architecture
 ```
 Phi3VForCausalLM(
   (model): Phi3VModel(
@@ -64,4 +65,17 @@ Phi3VForCausalLM(
   )
   (lm_head): Linear(in_features=3072, out_features=32064, bias=False)
 )
+```
+## text and vision tokenization
+```python
+messages = [ 
+  {"role": "user", "content": "<|image_1|>\nWhat is shown in this image?"}, 
+  {"role": "assistant", "content": "The chart displays the percentage of respondents who agree with various statements about their preparedness for meetings. It shows five categories: 'Having clear and pre-defined goals for meetings', 'Knowing where to find the information I need for a meeting', 'Understanding my exact role and responsibilities when I'm invited', 'Having tools to manage admin tasks like note-taking or summarization', and 'Having more focus time to sufficiently prepare for meetings'. Each category has an associated bar indicating the level of agreement, measured on a scale from 0% to 100%."}, 
+  {"role": "user", "content": "Provide insightful questions to spark discussion."} 
+]
+prompt = processor.tokenizer.apply_chat_template(messages, tokenize=True, add_generation_prompt=True)
+len(prompt)
+```
+```bash
+169
 ```
